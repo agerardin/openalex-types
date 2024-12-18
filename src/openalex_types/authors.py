@@ -19,7 +19,7 @@ from pydantic import BaseModel, model_validator, field_validator
 
 class AuthorCountByYear(BaseCountByYear, SQLTable):
     """Author Count by Year."""
-    author_id: Optional[str] = None
+    author_id: str
     _sql_table_name = "openalex.authors_counts_by_year"
     _sql_order = ["author_id", "year", "works_count",
                   "cited_by_count", "oa_works_count"]
@@ -27,7 +27,7 @@ class AuthorCountByYear(BaseCountByYear, SQLTable):
 
 class AuthorIDs(BaseModel, SQLTable):
     """Author ID."""
-    author_id: str
+    author_id: Optional[str] = None
     openalex: Optional[str] = None
     orcid: Optional[str] = None
     scopus: Optional[str] = None
